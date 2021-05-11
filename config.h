@@ -6,8 +6,8 @@ static const unsigned int gappx     = 45;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SourceCodePro:size=9" };
-static const char dmenufont[]       = "SourceCodePro:size=9";
+static const char *fonts[]          = { "SF Mono:size=9" };
+static const char dmenufont[]       = "SF Mono:size=9";
 // background
 static const char col_gray1[]       = "#292B2E";
 // inactive border
@@ -15,7 +15,7 @@ static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 // active border and bar main color
-static const char col_main[]        = "#3F416F";
+static const char col_main[]        = "#A588CF";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
