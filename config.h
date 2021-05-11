@@ -9,19 +9,21 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "SF Mono:size=9" };
 static const char dmenufont[]       = "SF Mono:size=9";
 // background
-static const char col_gray1[]       = "#292B2E";
+static const char colr_bg[]       = "#292B2E";
 // inactive border
 static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 // active border and bar main color
 static const char col_main[]        = "#A588CF";
-static const unsigned int baralpha = 0xd0;
-static const unsigned int borderalpha = OPAQUE;
+// opacity
+static const unsigned int baralpha = 140;
+static const unsigned int borderalpha = 140;
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_main,  col_main  },
+	[SchemeNorm] = { col_gray3, colr_bg, col_gray2 },
+	[SchemeSel]  = { "#000000", col_main,  col_main  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -30,7 +32,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -70,7 +72,7 @@ static const Layout layouts[] = {
 static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_main, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", colr_bg, "-nf", col_gray3, "-sb", col_main, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
