@@ -15,7 +15,7 @@ static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 // active border and bar main color
-static const char col_main[]        = "#A588CF";
+static const char col_main[]        = "#5570D3";
 // opacity
 static const unsigned int baralpha = 140;
 static const unsigned int borderalpha = 140;
