@@ -8,29 +8,28 @@ static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
 static const char *fonts[]              = { "SF Mono:size=9" };
 static const char dmenufont[]           = "SF Mono:size=9";
-// background
-static const char col_bg[]             = "#292B2E";
-// inactive border
+/*  background */
+static const char col_bg[]              = "#292B2E";
+/* inactive border */
 static const char col_gray2[]           = "#282A36";
 static const char col_gray3[]           = "#BBBBBB";
 static const char col_gray4[]           = "#EEEEEE";
-// active border and bar main color
+/* active border and bar main color */
 static const char col_main[]            = "#E3D7EC";
-// opacity
+/* opacity */
 static const unsigned int baralpha      = 140;
 static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_bg, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_bg,    col_gray2 },
 	[SchemeSel]  = { "#202020", col_main,  col_main  },
 };
 static const unsigned int alphas[][3]      = {
-	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, 999, borderalpha },
+	/*               fg         bg         border     */
+	[SchemeNorm] = { OPAQUE,    baralpha,  borderalpha },
+	[SchemeSel]  = { OPAQUE,    999,       borderalpha },
 };
-
 /* tagging */
 static const char *tags[] = { "", "", "", "", ""};
 
@@ -57,6 +56,9 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+#define FN_F9   0x1008FF12
+#define FN_F10  0x1008FF11
+#define FN_F11	0x1008FF13
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -68,15 +70,18 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-
 static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
+
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_main, "-nf", "#303030", "-sb", "#DAACF0", "-sf", "#303030", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/volume.sh")},
+    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/volume.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/volume.sh")},
     { 0,                            XK_Print,  spawn,          {.v = printscreen } },
     { ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
