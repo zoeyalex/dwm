@@ -1,34 +1,34 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
-static const unsigned int gappx     = 45;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF Mono:size=9" };
-static const char dmenufont[]       = "SF Mono:size=9";
+static const unsigned int borderpx      = 4;        /* border pixel of windows */
+static const unsigned int gappx         = 45;        /* gaps between windows */
+static const unsigned int snap          = 32;       /* snap pixel */
+static const int showbar                = 1;        /* 0 means no bar */
+static const int topbar                 = 1;        /* 0 means bottom bar */
+static const char *fonts[]              = { "SF Mono:size=9" };
+static const char dmenufont[]           = "SF Mono:size=9";
 // background
-static const char colr_bg[]       = "#292B2E";
+static const char col_bg[]             = "#292B2E";
 // inactive border
-static const char col_gray2[]       = "#282a36";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
+static const char col_gray2[]           = "#282A36";
+static const char col_gray3[]           = "#BBBBBB";
+static const char col_gray4[]           = "#EEEEEE";
 // active border and bar main color
-static const char col_main[]        = "#5570D3";
+static const char col_main[]            = "#E3D7EC";
 // opacity
-static const unsigned int baralpha = 140;
-static const unsigned int borderalpha = 140;
+static const unsigned int baralpha      = 140;
+static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, colr_bg, col_gray2 },
-	[SchemeSel]  = { "#000000", col_main,  col_main  },
+	[SchemeNorm] = { col_gray3, col_bg, col_gray2 },
+	[SchemeSel]  = { "#202020", col_main,  col_main  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, 999, borderalpha },
 };
 
 /* tagging */
@@ -72,7 +72,7 @@ static const Layout layouts[] = {
 static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", colr_bg, "-nf", col_gray3, "-sb", col_main, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_main, "-nf", "#303030", "-sb", "#DAACF0", "-sf", "#303030", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
