@@ -1,21 +1,21 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx      = 4;        /* border pixel of windows */
+static const unsigned int borderpx      = 2;        /* border pixel of windows */
 static const unsigned int gappx         = 45;        /* gaps between windows */
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = { "SF Mono:size=9" };
-static const char dmenufont[]           = "SF Mono:size=9";
+static const char *fonts[]              = { "Tamzen:size=9" };
+static const char dmenufont[]           = "Tamzen:size=9";
 /*  background */
-static const char col_bg[]              = "#292B2E";
+static const char col_bg[]              = "#1c1c1c";
 /* inactive border */
-static const char col_gray2[]           = "#282A36";
+static const char col_gray2[]           = "#1c1c1c";
 static const char col_gray3[]           = "#BBBBBB";
 static const char col_gray4[]           = "#EEEEEE";
 /* active border and bar main color */
-static const char col_main[]            = "#E3D7EC";
+static const char col_main[]            = "#AFAFD7";
 /* opacity */
 static const unsigned int baralpha      = 140;
 static const unsigned int borderalpha   = 140;
@@ -31,7 +31,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE,    999,       borderalpha },
 };
 /* tagging */
-static const char *tags[] = { "", "", "", "", ""};
+static const char *tags[] = { "1", "2", "3", "4", "5"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -79,9 +79,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/volume.sh")},
-    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/volume.sh")},
-	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/volume.sh")},
+	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/.local/bin/volume.sh")},
+    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/.local/bin/volume.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/.local/bin/volume.sh")},
     { 0,                            XK_Print,  spawn,          {.v = printscreen } },
     { ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
