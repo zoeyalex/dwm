@@ -6,8 +6,8 @@ static const unsigned int gappx         = 45;        /* gaps between windows */
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = { "Tamzen:size=10" };
-static const char dmenufont[]           = "Tamzen:size=10";
+static const char *fonts[]              = { "Tamzen:pixelsize=13:antialias=true:autohint=true:style=Regular" };
+static const char dmenufont[]           = "Tamzen:pixelsize=13:antialias=true:autohint=true:style=Regular";
 /*  background */
 static const char col_bg[]              = "#1c1c1c";
 /* inactive border */
