@@ -16,19 +16,23 @@ static const char col_gray3[]           = "#BBBBBB";
 static const char col_gray4[]           = "#EEEEEE";
 /* active border and bar main color */
 static const char col_main[]            = "#AFAFD7";
+/*                                          "#967FC3"
+                                          "#828282"
+*/
+/* old select "#202020"*/
 /* opacity */
 static const unsigned int baralpha      = 140;
 static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_bg,    col_gray2 },
-	[SchemeSel]  = { "#202020", col_main,  col_main  },
+	[SchemeNorm] = { "#AFAFD7", col_bg,    col_bg },
+	[SchemeSel]  = { col_gray3, col_bg,    col_main  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
-	[SchemeNorm] = { OPAQUE,    baralpha,  borderalpha },
-	[SchemeSel]  = { OPAQUE,    999,       borderalpha },
+	[SchemeNorm] = { OPAQUE,    -1,        borderalpha },
+	[SchemeSel]  = { OPAQUE,    -1,        borderalpha },
 };
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5"};
@@ -79,9 +83,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/.local/bin/volume.sh")},
-    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/.local/bin/volume.sh")},
-	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/.local/bin/volume.sh")},
+	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/.local/bin/status/status.sh")},
+    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/.local/bin/status/status.sh")},
     { 0,                            XK_Print,  spawn,          {.v = printscreen } },
     { ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
