@@ -83,9 +83,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            FN_F9,     spawn,          SHCMD("pamixer -t; sh ~/.local/bin/status/status.sh")},
-    { 0,                            FN_F10,    spawn,          SHCMD("pamixer -d 5; sh ~/.local/bin/status/status.sh")},
-	{ 0,                            FN_F11,    spawn,          SHCMD("pamixer -i 5; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F9,     spawn,          SHCMD("amixer -q -D pulse sset Master toggle; sh ~/.local/bin/status/status.sh")},
+    { 0,                            FN_F10,    spawn,          SHCMD("amixer -q -D pulse sset Master 10%-; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("amixer -q -D pulse sset Master 10%+; sh ~/.local/bin/status/status.sh")},
     { 0,                            XK_Print,  spawn,          {.v = printscreen } },
     { ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
