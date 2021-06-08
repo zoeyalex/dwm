@@ -1,24 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx      = 2;        /* border pixel of windows */
+static const unsigned int borderpx      = 0;        /* border pixel of windows */
 static const unsigned int gappx         = 45;        /* gaps between windows */
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = { "Tamzen:pixelsize=13:antialias=true:autohint=true:style=Regular" };
-static const char dmenufont[]           = "Tamzen:pixelsize=13:antialias=true:autohint=true:style=Regular";
+static const char *fonts[]              = { "undefined-medium=12:antialias=true:autohint=true:style=Regular" };
+static const char dmenufont[]           = "undefined-medium:size=12:antialias=true:autohint=true:style=Regular";
 /*  background */
-static const char col_bg[]              = "#1c1c1c";
+static const char col_bg[]              = "#010101";
 /* inactive border */
 static const char col_gray2[]           = "#000000";
 static const char col_gray3[]           = "#BBBBBB";
-static const char col_gray4[]           = "#EEEEEE";
+static const char col_gray4[]           = "#57FFFF";
 /* active border and bar main color */
-static const char col_main[]            = "#AFAFD7";
-/*                                          "#967FC3"
-                                          "#828282"
-*/
+static const char col_main[]            = "#FFFFFF";
+
 /* old select "#202020"*/
 /* opacity */
 static const unsigned int baralpha      = 140;
@@ -26,8 +24,8 @@ static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { "#AFAFD7", col_bg,    col_bg },
-	[SchemeSel]  = { col_gray3, col_bg,    col_main  },
+	[SchemeNorm] = { "#FFFFFF", col_bg,    col_bg },
+	[SchemeSel]  = { "#57FFFF", col_bg,   "#FF56FF"},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
@@ -78,7 +76,7 @@ static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", "#1c1c1c", "-nf", "#BBBBBB", "-sb", col_main, "-sf", "#1c1c1c", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", "#D8DEE9", "-sb", col_main, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
@@ -107,8 +105,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+/*	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },*/
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
