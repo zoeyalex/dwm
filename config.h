@@ -1,21 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx      = 0;        /* border pixel of windows */
+static const unsigned int borderpx      = 1;        /* border pixel of windows */
 static const unsigned int gappx         = 45;        /* gaps between windows */
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = { "undefined-medium=12:antialias=true:autohint=true:style=Regular" };
-static const char dmenufont[]           = "undefined-medium:size=12:antialias=true:autohint=true:style=Regular";
+static const char *fonts[]              = { "Terminus:pixelsize=12antialias=true:autohint=true:style=Regular" };
+static const char dmenufont[]           = "Terminus:pixelsize=12:antialias=true:autohint=true:style=Regular";
 /*  background */
-static const char col_bg[]              = "#010101";
-/* inactive border */
-static const char col_gray2[]           = "#000000";
-static const char col_gray3[]           = "#BBBBBB";
-static const char col_gray4[]           = "#57FFFF";
+static const char col_bg[]              = "#000000";
 /* active border and bar main color */
-static const char col_main[]            = "#FFFFFF";
+static const char col_main[]            = "#ACC6E2";
 
 /* old select "#202020"*/
 /* opacity */
@@ -24,8 +20,8 @@ static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { "#FFFFFF", col_bg,    col_bg },
-	[SchemeSel]  = { "#57FFFF", col_bg,   "#FF56FF"},
+	[SchemeNorm] = {  col_main, col_bg,   col_bg },
+	[SchemeSel]  = { "#5375A5", col_bg,   col_main},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
@@ -76,7 +72,7 @@ static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", "#D8DEE9", "-sb", col_main, "-sf", col_bg, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_main, "-sb", col_main, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
