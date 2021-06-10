@@ -72,7 +72,7 @@ static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_main, "-sb", col_main, "-sf", col_bg, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-l", "5", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_main, "-sb", col_main, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
