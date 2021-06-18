@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx      = 1;        /* border pixel of windows */
-static const unsigned int gappx         = 45;        /* gaps between windows */
+static const unsigned int borderpx      = 2;        /* border pixel of windows */
+static const unsigned int gappx         = 25;        /* gaps between windows 45 default*/
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
@@ -29,7 +29,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE,    -1,        borderalpha },
 };
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5"};
+static const char *tags[] = { "一", "二", "三", "四", "五"};
 
 static const Rule rules[] = {
 	/* xprop(1):
