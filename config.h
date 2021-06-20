@@ -6,22 +6,22 @@ static const unsigned int gappx         = 25;        /* gaps between windows 45 
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
+/* font */
 static const char *fonts[]              = { "Terminus:pixelsize=12antialias=true:autohint=true:style=Regular" };
 static const char dmenufont[]           = "Terminus:pixelsize=12:antialias=true:autohint=true:style=Regular";
-/*  background */
+/* palette */
 static const char col_bg[]              = "#000000";
-/* active border and bar main color */
-static const char col_main[]            = "#ACC6E2";
+static const char col_main[]            = "#E8B5C1";
+static const char col_fg[]              = "#9B5565";
 
-/* old select "#202020"*/
 /* opacity */
 static const unsigned int baralpha      = 140;
 static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = {  col_main, col_bg,   col_bg },
-	[SchemeSel]  = { "#5375A5", col_bg,   col_main},
+	[SchemeNorm] = { col_main, col_bg,   col_bg },
+	[SchemeSel]  = { col_fg,   col_bg,   col_main},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
