@@ -1,18 +1,20 @@
 /* See LICENSE file for copyright and license details. */
-
 /* appearance */
 static const unsigned int borderpx      = 2;        /* border pixel of windows */
-static const unsigned int gappx         = 25;        /* gaps between windows 45 default*/
+static const unsigned int gappx         = 25;       /* gaps between windows 45 default*/
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-/* font */
-static const char *fonts[]              = { "Terminus:pixelsize=12antialias=true:autohint=true:style=Regular" };
-static const char dmenufont[]           = "Terminus:pixelsize=12:antialias=true:autohint=true:style=Regular";
+static const int vertpad            = 10;       /* vertical padding of bar */
+static const int sidepad            = 10;       /* horizontal padding of bar */
+
+/* fonts */
+static const char *fonts[]              = { "Terminus:pixelsize=10antialias=true:autohint=true:style=Regular" };
+static const char dmenufont[]           = "Terminus:pixelsize=10:antialias=true:autohint=true:style=Regular";
 /* palette */
-static const char col_bg[]              = "#000000";
-static const char col_main[]            = "#E8B5C1";
-static const char col_fg[]              = "#9B5565";
+static const char col_bg[]              = "#FEFDFB";
+static const char col_fg[]              = "#814663";
+static const char col_main[]            = "#9F8AFF";
 
 /* opacity */
 static const unsigned int baralpha      = 140;
@@ -20,16 +22,21 @@ static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_main, col_bg,   col_bg },
-	[SchemeSel]  = { col_fg,   col_bg,   col_main},
+	[SchemeNorm] = { col_fg,   col_bg,     col_bg },
+	[SchemeSel]  = { col_fg,   col_bg,   col_fg},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
-	[SchemeNorm] = { OPAQUE,    -1,        borderalpha },
+	[SchemeNorm] = { OPAQUE,    -1,        borderalpha},
 	[SchemeSel]  = { OPAQUE,    -1,        borderalpha },
 };
 /* tagging */
 static const char *tags[] = { "一", "二", "三", "四", "五"};
+
+static const unsigned int ulinepad	= 5;	    /* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	        /* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,7 +79,7 @@ static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "5", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_main, "-sb", col_main, "-sf", col_bg, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_main, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
 
