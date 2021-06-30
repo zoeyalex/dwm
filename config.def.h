@@ -23,7 +23,7 @@ static const unsigned int borderalpha   = 140;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_fg,   col_bg,     col_bg },
-	[SchemeSel]  = { col_bg,   col_main,   col_fg},
+	[SchemeSel]  = { col_fg,   col_bg,   col_fg},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
