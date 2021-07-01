@@ -65,6 +65,7 @@ static const Layout layouts[] = {
 #define FN_F10  0x1008FF11
 #define FN_F11	0x1008FF13
 #define MODKEY Mod1Mask
+#define LOCKKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -82,6 +83,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_main, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *ranger[] = { "st", "-e", "ranger", NULL };
+static const char *lockscreen[] = { "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,6 +95,7 @@ static Key keys[] = {
     { MODKEY,                       XK_r,      spawn,          {.v = ranger } },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		    XK_Return, spawn,          {.v = termcmd } },
+    { LOCKKEY,                      XK_l,      spawn,          {.v = lockscreen } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
