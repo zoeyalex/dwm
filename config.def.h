@@ -1,20 +1,19 @@
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx      = 2;        /* border pixel of windows */
-static const unsigned int gappx         = 25;       /* gaps between windows 45 default*/
+static const unsigned int borderpx      = 3;        /* border pixel of windows */
+static const unsigned int gappx         = 20;       /* gaps between windows 45 default*/
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const int vertpad            = 10;       /* vertical padding of bar */
-static const int sidepad            = 10;       /* horizontal padding of bar */
+static const int vertpad                = 10;       /* vertical padding of bar */
+static const int sidepad                = 10;       /* horizontal padding of bar */
 
 /* fonts */
-static const char *fonts[]              = { "Terminus:pixelsize=10antialias=true:autohint=true:style=Regular" };
-static const char dmenufont[]           = "Terminus:pixelsize=10:antialias=true:autohint=true:style=Regular";
+static const char *fonts[]              = { "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular" };
+static const char dmenufont[]           = "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular";
 /* palette */
-static const char col_bg[]              = "#FEFDFB";
-static const char col_fg[]              = "#814663";
-static const char col_main[]            = "#9F8AFF";
+static const char col_bg[]              = "blue2";
+static const char col_fg[]              = "white";
 
 /* opacity */
 static const unsigned int baralpha      = 140;
@@ -22,8 +21,8 @@ static const unsigned int borderalpha   = 140;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg,   col_bg,     col_bg },
-	[SchemeSel]  = { col_fg,   col_bg,   col_fg},
+	[SchemeNorm] = { col_fg,    col_bg,    "black"},
+	[SchemeSel]  = { col_bg,    col_fg,    col_bg},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
@@ -31,7 +30,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE,    -1,        borderalpha },
 };
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四", "五"};
+static const char *tags[] = { "1", "2", "3", "4"};
 
 static const unsigned int ulinepad	= 5;	    /* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
@@ -43,9 +42,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class          instance    title       tags mask     isfloating   monitor */
+	{ "discord",      NULL,       NULL,       1 << 1,       0,           -1 },
+    { "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
 };
 
 /* layout(s) */
@@ -55,7 +54,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[]",       tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
@@ -65,6 +64,7 @@ static const Layout layouts[] = {
 #define FN_F10  0x1008FF11
 #define FN_F11	0x1008FF13
 #define MODKEY Mod1Mask
+#define LOCKKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -75,29 +75,28 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_fg, "-sf", col_bg, NULL };
+static const char *termcmd[]  = { "st", NULL };
+static const char *lockscreen[] = { "slock", NULL };
 static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
 static const char *printscreen_select[] = {"flameshot", "gui", NULL};
-
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_main, "-sf", col_bg, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *ranger[] = { "st", "-e", "ranger", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,                            FN_F9,     spawn,          SHCMD("pulsemixer --toggle-mute; sh ~/.local/bin/status/status.sh")},
-    { 0,                            FN_F10,    spawn,          SHCMD("pulsemixer --change-volume -5; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F10,    spawn,          SHCMD("pulsemixer --change-volume -5; sh ~/.local/bin/status/status.sh")},
 	{ 0,                            FN_F11,    spawn,          SHCMD("pulsemixer --change-volume +5;sh ~/.local/bin/status/status.sh")},
-    { 0,                            XK_Print,  spawn,          {.v = printscreen } },
-    { ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
-    { MODKEY,                       XK_r,      spawn,          {.v = ranger } },
-    { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = printscreen } },
+	{ ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		    XK_Return, spawn,          {.v = termcmd } },
+	{ LOCKKEY,                      XK_l,      spawn,          {.v = lockscreen } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	/*	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+		{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },*/
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_m, 	   zoom,           {0} },
@@ -110,8 +109,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-/*	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },*/
+	/*	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+		{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },*/
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
@@ -121,7 +120,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
@@ -131,7 +129,6 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
