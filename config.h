@@ -12,8 +12,8 @@ static const int sidepad                = 10;       /* horizontal padding of bar
 static const char *fonts[]              = { "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular" };
 static const char dmenufont[]           = "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular";
 /* palette */
-static const char col_bg[]              = "blue2";
-static const char col_fg[]              = "white";
+static const char col_bg[]              = "#0000AA";
+static const char col_fg[]              = "#AAAAAA";
 
 /* opacity */
 static const unsigned int baralpha      = 140;
