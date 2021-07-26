@@ -44,7 +44,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "discord",      NULL,       NULL,       1 << 1,       0,           -1 },
-    { "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "Pidgin",       NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
@@ -88,7 +88,7 @@ static Key keys[] = {
 	{ 0,                            FN_F9,     spawn,          SHCMD("pactl set-sink-mute 0 toggle; sh ~/.local/bin/status/status.sh")},
 	{ 0,                            FN_F10,    spawn,          SHCMD("pactl set-sink-volume 0 -5%; sh ~/.local/bin/status/status.sh")},
 	{ 0,                            FN_F11,    spawn,          SHCMD("pactl set-sink-volume 0 +5%;sh ~/.local/bin/status/status.sh")},
-    { 0,                            XK_Print,  spawn,          {.v = printscreen } },
+	{ 0,                            XK_Print,  spawn,          {.v = printscreen } },
 	{ ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		    XK_Return, spawn,          {.v = termcmd } },
@@ -96,8 +96,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	/*	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-		{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },*/
+	/*
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	*/
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_m, 	   zoom,           {0} },
@@ -110,8 +112,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	/*	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-		{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },*/
+	/*
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	*/
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
@@ -139,4 +143,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
