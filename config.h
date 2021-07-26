@@ -45,6 +45,7 @@ static const Rule rules[] = {
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "discord",      NULL,       NULL,       1 << 1,       0,           -1 },
     { "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "Pidgin",       NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
@@ -76,18 +77,18 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_fg, "-sf", col_bg, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *lockscreen[] = { "slock", NULL };
-static const char *printscreen[] = {"flameshot", "full", "-c", NULL};
-static const char *printscreen_select[] = {"flameshot", "gui", NULL};
+static const char *dmenucmd[] =           { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_fg, "-sf", col_bg, NULL };
+static const char *termcmd[]  =           { "st", NULL };
+static const char *lockscreen[] =         { "slock", NULL };
+static const char *printscreen[] =        { "flameshot", "full", "-c", NULL };
+static const char *printscreen_select[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            FN_F9,     spawn,          SHCMD("pulsemixer --toggle-mute; sh ~/.local/bin/status/status.sh")},
-	{ 0,                            FN_F10,    spawn,          SHCMD("pulsemixer --change-volume -5; sh ~/.local/bin/status/status.sh")},
-	{ 0,                            FN_F11,    spawn,          SHCMD("pulsemixer --change-volume +5;sh ~/.local/bin/status/status.sh")},
-	{ 0,                            XK_Print,  spawn,          {.v = printscreen } },
+	{ 0,                            FN_F9,     spawn,          SHCMD("pactl set-sink-mute 0 toggle; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F10,    spawn,          SHCMD("pactl set-sink-volume 0 -5%; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("pactl set-sink-volume 0 +5%;sh ~/.local/bin/status/status.sh")},
+    { 0,                            XK_Print,  spawn,          {.v = printscreen } },
 	{ ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		    XK_Return, spawn,          {.v = termcmd } },
