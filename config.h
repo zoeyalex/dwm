@@ -5,15 +5,15 @@ static const unsigned int gappx         = 20;       /* gaps between windows 45 d
 static const unsigned int snap          = 32;       /* snap pixel */
 static const int showbar                = 1;        /* 0 means no bar */
 static const int topbar                 = 1;        /* 0 means bottom bar */
-static const int vertpad                = 10;       /* vertical padding of bar */
+static const int vertpad                = 0;       /* vertical padding of bar */
 static const int sidepad                = 10;       /* horizontal padding of bar */
 
 /* fonts */
-static const char *fonts[]              = { "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular" };
-static const char dmenufont[]           = "AcPlusIBMBIOS:size=12:antialias=true:autohint=true:style=Regular";
+static const char *fonts[]              = { "Terminus:pixelsize=14:antialias=true:autohint=true:style=Bold" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular" };*/
+static const char dmenufont[]           = { "Terminus:pixelsize=14:antialias=true:autohint=true:style=Bold" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular";*/
 /* palette */
-static const char col_bg[]              = "#0000AA";
-static const char col_fg[]              = "#AAAAAA";
+static const char col_bg[]              = "#000000";
+static const char col_fg[]              = "#FFFFFF";
 
 /* opacity */
 static const unsigned int baralpha      = 140;
@@ -22,7 +22,7 @@ static const unsigned int borderalpha   = 140;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_fg,    col_bg,    "black"},
-	[SchemeSel]  = { col_bg,    col_fg,    col_bg},
+	[SchemeSel]  = { col_bg,    col_fg,    "#555555"},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg         bg         border     */
@@ -30,7 +30,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE,    -1,        borderalpha },
 };
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4"};
+static const char *tags[] = { "1", "2", "3", "Q", "W", "E"};
 
 static const unsigned int ulinepad	= 5;	    /* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
@@ -43,9 +43,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
-	{ "discord",      NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Signal",       NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "Pidgin",       NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
 /* layout(s) */
@@ -79,15 +78,19 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] =           { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_fg, "-sf", col_bg, NULL };
 static const char *termcmd[]  =           { "st", NULL };
-static const char *lockscreen[] =         { "slock", NULL };
+static const char *lockscreen[] =         { "slock", "-m", "Locked", NULL};
 static const char *printscreen[] =        { "flameshot", "full", "-c", NULL };
 static const char *printscreen_select[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            FN_F9,     spawn,          SHCMD("pactl set-sink-mute 0 toggle; sh ~/.local/bin/status/status.sh")},
-	{ 0,                            FN_F10,    spawn,          SHCMD("pactl set-sink-volume 0 -5%; sh ~/.local/bin/status/status.sh")},
-	{ 0,                            FN_F11,    spawn,          SHCMD("pactl set-sink-volume 0 +5%;sh ~/.local/bin/status/status.sh")},
+	//{ 0,                            FN_F9,     spawn,          SHCMD("pactl set-sink-mute 0 toggle; sh ~/.local/bin/status/status.sh")},
+	//{ 0,                            FN_F10,    spawn,          SHCMD("pactl set-sink-volume 0 -5%; sh ~/.local/bin/status/status.sh")},
+	//{ 0,                            FN_F11,    spawn,          SHCMD("pactl set-sink-volume 0 +5%;sh ~/.local/bin/status/status.sh")},
+
+	{ 0,                            FN_F9,     spawn,          SHCMD("amixer set Master toggle; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F10,    spawn,          SHCMD("amixer set Master 5%-; sh ~/.local/bin/status/status.sh")},
+	{ 0,                            FN_F11,    spawn,          SHCMD("amixer set Master 5%+; sh ~/.local/bin/status/status.sh")},
 	{ 0,                            XK_Print,  spawn,          {.v = printscreen } },
 	{ ShiftMask,                    XK_Print,  spawn,          {.v = printscreen_select } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -124,8 +127,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	TAGKEYS(                        XK_q,                      3)
+	TAGKEYS(                        XK_w,                      4)
+	TAGKEYS(                        XK_e,                      5)
+	{ MODKEY|ShiftMask,             XK_l,      quit,           {0} },
 };
 
 /* button definitions */
