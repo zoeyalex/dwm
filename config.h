@@ -9,8 +9,8 @@ static const int vertpad                = 0;       /* vertical padding of bar */
 static const int sidepad                = 10;       /* horizontal padding of bar */
 
 /* fonts */
-static const char *fonts[]              = { "Terminus:pixelsize=14:antialias=true:autohint=true:style=Bold" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular" };*/
-static const char dmenufont[]           = { "Terminus:pixelsize=14:antialias=true:autohint=true:style=Bold" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular";*/
+static const char *fonts[]              = { "MxPlusIBMVGA8x16:pixelsize=20:antialias=true:autohint=true:style=Regular" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular" };*/
+static const char dmenufont[]           = { "MxPlusIBMVGA8x16:pixelsize=20:antialias=true:autohint=true:style=Regular" };/*"BmPlusIBMVGA8x16:pixelsize=16:antialias=true:autohint=true:style=Regular";*/
 /* palette */
 static const char col_bg[]              = "#000000";
 static const char col_fg[]              = "#FFFFFF";
@@ -42,9 +42,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class          instance    title       tags mask     isfloating   monitor */
-	{ "Signal",       NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "qutebrowser",  NULL,       NULL,       1 << 0,       0,           -1 },
+	/* class                    instance    title       tags mask     isfloating   monitor */
+	{ "qutebrowser",            NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "Lutris",                 NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "leagueclientux.exe",     NULL,       NULL,       1 << 1,       1,           -1 },
+    { "leagueclient.exe",       NULL,       NULL,       1 << 1,       0,           -1 },
+    { "rioclientux.exe",        NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Signal",                 NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "explorer.exe",           NULL,       NULL,       1 << 3,       0,           -1 },
+
 };
 
 /* layout(s) */
@@ -81,6 +87,8 @@ static const char *termcmd[]  =           { "st", NULL };
 static const char *lockscreen[] =         { "slock", "-m", "Locked", NULL};
 static const char *printscreen[] =        { "flameshot", "full", "-c", NULL };
 static const char *printscreen_select[] = { "flameshot", "gui", NULL };
+static const char *xkill[] = { "xkill", NULL };
+static const char *htop[] = { "htop", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -131,6 +139,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_w,                      4)
 	TAGKEYS(                        XK_e,                      5)
 	{ MODKEY|ShiftMask,             XK_l,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xkill } },
 };
 
 /* button definitions */
